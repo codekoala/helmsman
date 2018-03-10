@@ -3,12 +3,13 @@ FROM golang:1.10-alpine as builder
 ENV DEST $GOPATH/src/github.com/andrepinto/helmsman
 WORKDIR $DEST
 
-RUN apk --update add git make
+RUN apk --update add git make upx
 RUN go get -u github.com/golang/dep/...
 
 ADD . $DEST
 RUN make dep
 RUN make build
+RUN upx ./bin/helmsman
 
 # ----------------------------------------------------------------------------
 

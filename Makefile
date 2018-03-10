@@ -1,5 +1,5 @@
 build:
-	go build -o bin/helmsman cmd/server/main.go
+	CGO_ENABLED=0 go build -ldflags '-s' -o bin/helmsman cmd/server/main.go
 
 dep:
 	dep ensure
